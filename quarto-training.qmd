@@ -1,0 +1,93 @@
+---
+format: revealjs
+---
+
+# Introduction à Quarto
+
+![](https://quarto.org/assets/images/quarto.png){width="200"}
+
+Avec: Egor Katkov, professionnel de recherche au CSBQ
+
+![](https://qcbs.ca/wp-content/uploads/2025/07/csbq-logo-black.png){width="400" height="80"}
+
+## Objectifs - Comprendre 🎯
+
+Pourquoi utiliser quarto
+
+Comment fonctionne quarto
+
+Options pour la collaboration
+
+## Objectifs - Faire 🔨
+
+Titre et sous-titre
+
+Hyperlien
+
+Citation
+
+Figure et légende
+
+Tableau statistique
+
+Valeur calculée avec prose
+
+Cacher le code
+
+## Plan
+
+Pourquoi
+
+Fonctionnement
+
+Utilisation
+
+## Crise de la reproductibilité
+
+![](fig/repr_crisis.png)
+
+## Plan
+
+- Motivation: Reproducibility crisis
+
+- Comment fonctionne de quarto
+
+  - markdown
+
+    - headings
+
+    - liens
+
+    - tableaux
+
+    - figures
+
+  - pandoc
+
+    - permet l'interconversion entre les formats (markdown, html, pdf, docx, etc.)
+
+  - engin knitr, jupyter
+
+    - execute le code integré au document
+
+- Rédaction
+
+  - Sans code
+
+    - citations
+
+    - références internes
+
+  - Avec code
+
+    - intégration de code R ou Python avec texte
+
+    - options YAML (métadonnées)
+
+    - création de projets
+
+- Collaboration
+
+  - Options sérieuses: git, hypothes.is
+
+  - Sera amélioré dans Quarto2
