@@ -72,15 +72,15 @@ library(dplyr)
 library(ggplot2)
 
 # Titre de la question, traduit à la main (la colonne d'origine est en anglais)
-titre_fr <- "Parmi les affirmations suivantes sur une « crise de la reproductibilité » au sein de la communauté scientifique, laquelle correspond à votre avis ?"
+titre_fr <- "Y-a-t-il une « crise de la reproductibilité » ?"
 
 # Traduction des réponses (à ajuster si les libellés de vos données diffèrent) :
 # toute réponse non listée ici garde son libellé anglais d'origine
 traduction <- c(
-  "There is a significant crisis of reproducibility" = "Il y a une crise importante de la reproductibilité",
-  "There is a slight crisis of reproducibility" = "Il y a une légère crise de la reproductibilité",
-  "There is no crisis of reproducibility" = "Il n'y a pas de crise de la reproductibilité",
-  "I don't know" = "Je ne sais pas"
+  "There is a significant crisis of reproducibility" = "Crise importante",
+  "There is a slight crisis of reproducibility" = "Légère crise",
+  "There is no crisis of reproducibility" = "Pas de crise",
+  "I don't know" = "Ne sais pas"
 )
 
 plot_df <- df |>

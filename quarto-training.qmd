@@ -1,5 +1,8 @@
 ---
-format: revealjs
+format: 
+  revealjs:
+    code-block-height: 1024px 
+bibliography: references.bib
 ---
 
 # Introduction à Quarto
@@ -46,48 +49,202 @@ Utilisation
 
 ![](fig/repr_crisis.png)
 
-## Plan
+## Causes possibles
 
-- Motivation: Reproducibility crisis
+- Chance
 
-- Comment fonctionne de quarto
+- Fraude scientifique
 
-  - markdown
+- Data collection errors
 
-    - headings
+- P-hacking
 
-    - liens
+- Rapportage sélectif
 
-    - tableaux
+- Erreurs statistiques ou lors de l'analyse
 
-    - figures
+- Méthodologie obscure
 
-  - pandoc
+## Flux de travail traditionnel
 
-    - permet l'interconversion entre les formats (markdown, html, pdf, docx, etc.)
+```{mermaid}
+%%{init: {'themeVariables': {'fontSize': '28px'}}}%%
 
-  - engin knitr, jupyter
+flowchart LR
 
-    - execute le code integré au document
+A1[Code] --> F1[Figure]
+A1 --> F2["Résultat<br />statistique"]
+F1 --> |"Insértion"| W1["Document Word"]
+F2 --> |"Copier coller"| W1
+W1 --> P3["Publication"]
+```
 
-- Rédaction
+::: notes
+Qu'arrive-t'il lorsque la personne part du document publié et veut revenir à l'analyse ?
+:::
 
-  - Sans code
+## Flux de travail reproductible
 
-    - citations
+```{mermaid}
+%%{init: {'themeVariables': {'fontSize': '28px'}}}%%
 
-    - références internes
+flowchart LR
 
-  - Avec code
+C[Code] --> F[Figure]
+C --> R[Résultat<br />statistique]
 
-    - intégration de code R ou Python avec texte
 
-    - options YAML (métadonnées)
+F <-->|"intégré"| Q[Document Quarto]
+C <-->|"intégré"| Q
+R <-->|"intégré"| Q
 
-    - création de projets
+Q --> PDF[PDF]
+Q --> WORD[Word]
+Q --> HTML[HTML]
+Q --> S[Diapositives]
+```
 
-- Collaboration
+Idée conceptualisée par @gentleman2007
 
-  - Options sérieuses: git, hypothes.is
+::: notes
+Lecteur:
 
-  - Sera amélioré dans Quarto2
+- peut de retracer comment chaque chiffre a été généré,
+
+- jouer avec les modifications de l'analyse sur le produit final.
+
+Avantage pour l'auteur:
+
+- facile de modifier ou corriger le code sans avoir à tout re-modifier dans le document final
+
+- diminuer le risque d'erreur de copier-coller
+
+- possibilité de révision plus approfondie est possible
+:::
+
+## Sous le capot de Quarto
+
+```{mermaid}
+%%{init: {'themeVariables': {'fontSize': '24px'}}}%%
+
+flowchart LR
+
+M["Prose en<br />format<br />Markdown"]
+C[Code]
+
+M --> Q["Doc.<br />Quarto"]
+C --> Q
+
+Q --> K["knitr / Jupyter<br />(execute le code)"]
+
+K --> P[Pandoc]
+
+P --> PDF[PDF]
+P --> HTML[HTML]
+P --> DOCX[Word]
+P --> SL[Diapositives]
+```
+
+## Markdown - la base
+
+::::: columns
+::: {.column width="40%"}
+
+```         
+# Titre  
+
+## Sous-titre  
+
+Ceci est un paragraphe avec du texte en charactère **gras** et *italique*. Il contient aussi du `code` qui ne sera pas exécuté.  
+
+- Item 1 de la liste 
+- Item 2 de la liste  
+
+[Texte du lien](https://example.com) 
+```
+:::
+
+::: {.column width="60%"}
+
+<style>
+.fake-h1 { font-size: 1.6em; font-weight: 700; margin: 0.3em 0; }
+.fake-h2 { font-size: 1.2em; font-weight: 600; margin: 0.3em 0; }
+</style>
+
+::: {.fake-h1}
+Titre
+:::
+
+::: {.fake-h2}
+Sous-titre
+:::
+
+Ceci est un paragraphe avec du texte en caractère **gras** et *italique*. Il contient aussi du `code` qui ne sera pas exécuté.
+
+- Item 1 de la liste
+- Item 2 de la liste
+
+[Texte du lien](https://example.com)
+
+![Texte alternative](https://imgs.xkcd.com/comics/self_description.png)
+:::
+:::::
+
+## Markdown - Inclure des images
+
+```         
+![Texte alternative](https://imgs.xkcd.com/comics/self_description.png)
+```
+
+![Texte alternative](https://imgs.xkcd.com/comics/self_description.png)
+
+## Markdown - Inclure des tableaux
+
+```         
+| Les tableaux |     Sont  | Sympa |
+|--------------|:---------:|------:|
+| col 1 est    |  a gauche | $1600 |
+| col 2 est    |  centrée  |   $12 |
+| col 3 est    | à droite  |    $1 |
+```
+
+| Les tableaux |     Sont  | Sympa |
+|--------------|:---------:|------:|
+| col 1 est    |  a gauche | $1600 |
+| col 2 est    |  centrée  |   $12 |
+| col 3 est    | à droite  |    $1 |
+
+## Fonctionnalité quarto
+
+- Citations `[@gentleman2007]`
+- Références internes `@fig-mon-graphique`
+- Code (grosse catégorie)
+  - YAML
+  - Blocs de code
+  - Code en ligne
+
+## Collaboration
+
+- Format texte = parfait pour git
+- RStudio Cloud (payant pour  mode collaboratif)
+- Partager rendu (ex. .docx) et intégrer changements manuellement 
+- Quarto 2 s'en vient 
+
+## À vous d'essayer 🔨
+
+Titre et sous-titre
+
+Hyperlien
+
+Citation
+
+Figure et légende (avec code caché)
+
+Tableau statistique
+
+Valeur calculée mélangée avec prose
+
+Rendu du document
+
+
+## Références
