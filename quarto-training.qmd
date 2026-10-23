@@ -2,6 +2,7 @@
 format: 
   revealjs:
     code-block-height: 1024px 
+    embed-resources: true
 bibliography: references.bib
 ---
 
@@ -49,21 +50,21 @@ Utilisation
 
 ![](fig/repr_crisis.png)
 
-## Causes possibles
+## Causes possibles {.smaller}
 
-- Chance
+Chance
 
-- Fraude scientifique
+Fraude scientifique
 
-- Data collection errors
+Data collection errors
 
-- P-hacking
+P-hacking
 
-- Rapportage sélectif
+Rapportage sélectif
 
-- Erreurs statistiques ou lors de l'analyse
+Erreurs statistiques ou lors de l'analyse
 
-- Méthodologie obscure
+Méthodologie obscure
 
 ## Flux de travail traditionnel
 
@@ -122,6 +123,44 @@ Avantage pour l'auteur:
 - possibilité de révision plus approfondie est possible
 :::
 
+## Word vs Quarto
+
+::::: columns
+::: {.column width="50%"}
+### Word
+
+\+ tel quel
+
+\+ facile à utiliser et accepter revisions
+
+\- pas de traçabilité des données
+
+\- travail manuel par défaut
+
+\- gros documents difficile
+
+\- problèmes de compatibilité
+
+\- contrôlé par une seule compagnie
+:::
+
+::: {.column width="50%"}
+### Quarto
+
+\- deux fichiers: source + rendu
+
+\- courbe d'apparentissage pour la collaboration
+
+\+ option: code vs travail manuel
+
+\+ simple mais puissant
+
+\+ fichier source très léger
+
+\+ logiciel libre
+:::
+:::::
+
 ## Sous le capot de Quarto
 
 ```{mermaid}
@@ -147,9 +186,8 @@ P --> SL[Diapositives]
 
 ## Markdown - la base
 
-::::: columns
+::::::: columns
 ::: {.column width="40%"}
-
 ```         
 # Titre  
 
@@ -157,46 +195,45 @@ P --> SL[Diapositives]
 
 Ceci est un paragraphe avec du texte en charactère **gras** et *italique*. Il contient aussi du `code` qui ne sera pas exécuté.  
 
-- Item 1 de la liste 
-- Item 2 de la liste  
+- Item 1^de la liste^ 
+- Item 2~de la liste~
 
 [Texte du lien](https://example.com) 
 ```
 :::
 
-::: {.column width="60%"}
-
+::::: {.column width="60%"}
+```{=html}
 <style>
 .fake-h1 { font-size: 1.6em; font-weight: 700; margin: 0.3em 0; }
 .fake-h2 { font-size: 1.2em; font-weight: 600; margin: 0.3em 0; }
 </style>
+```
 
-::: {.fake-h1}
+::: fake-h1
 Titre
 :::
 
-::: {.fake-h2}
+::: fake-h2
 Sous-titre
 :::
 
 Ceci est un paragraphe avec du texte en caractère **gras** et *italique*. Il contient aussi du `code` qui ne sera pas exécuté.
 
-- Item 1 de la liste
-- Item 2 de la liste
+- Item 1^de la liste^
+- Item 2~de la liste~
 
 [Texte du lien](https://example.com)
-
-![Texte alternative](https://imgs.xkcd.com/comics/self_description.png)
-:::
 :::::
+:::::::
 
 ## Markdown - Inclure des images
 
 ```         
-![Texte alternative](https://imgs.xkcd.com/comics/self_description.png)
+![Légende de la figure](https://imgs.xkcd.com/comics/self_description.png)
 ```
 
-![Texte alternative](https://imgs.xkcd.com/comics/self_description.png)
+![Légende de la figure](https://imgs.xkcd.com/comics/self_description.png)
 
 ## Markdown - Inclure des tableaux
 
@@ -208,43 +245,225 @@ Ceci est un paragraphe avec du texte en caractère **gras** et *italique*. Il co
 | col 3 est    | à droite  |    $1 |
 ```
 
-| Les tableaux |     Sont  | Sympa |
-|--------------|:---------:|------:|
-| col 1 est    |  a gauche | $1600 |
-| col 2 est    |  centrée  |   $12 |
-| col 3 est    | à droite  |    $1 |
+| Les tableaux |   Sont   |  Sympa |
+|--------------|:--------:|-------:|
+| col 1 est    | a gauche | \$1600 |
+| col 2 est    | centrée  |   \$12 |
+| col 3 est    | à droite |    \$1 |
 
-## Fonctionnalité quarto
+## Éditeur Visuel
 
-- Citations `[@gentleman2007]`
-- Références internes `@fig-mon-graphique`
-- Code (grosse catégorie)
-  - YAML
-  - Blocs de code
-  - Code en ligne
+Démo:
 
-## Collaboration
+- Créer document quarto
 
-- Format texte = parfait pour git
-- RStudio Cloud (payant pour  mode collaboratif)
-- Partager rendu (ex. .docx) et intégrer changements manuellement 
-- Quarto 2 s'en vient 
+- Éditeur visuel
+
+- Mode source
+
+## Fonctionnalité quarto - [citations](https://quarto.org/docs/authoring/citations.html) {.smaller .scrollable}
+
+Banque de styles de citations - <https://github.com/citation-style-language/styles>
+
+Démo avec DOI: [@gentleman2007]
+
+- Taper "/" et sélectionner "Citation..."
+
+- "From DOI" -\> Chercher DOI -\> "Insert"
+
+- Avec ou sans `[]`
+
+Démo avec .bibtext: [On the Origin of Species](https://www.google.ca/books/edition/On_the_Origin_of_Species_by_Means_of_Nat/jTZbAAAAQAAJ?hl=en&gbpv=0)
+
+- Télécharger citation Bibtex
+
+- Insérer citation dans fichier `references.bib`
+
+Démo rapport: [Plan nature](https://cdn-contenu.quebec.ca/cdn-contenu/environnement/biodiversite/plan-nature-2030.pdf)
+
+- Créer une entrée en format BibTeX
+
+  - Avec Zotero (importer pdf -\> extraire métadonnées)
+
+  - Avec IA (attention aux droits d'auteur)
+
+  - Manuellement
+
+## Fonctionnalité quarto - [références internes](https://quarto.org/docs/authoring/cross-references.html) {.smaller}
+
+Démo de base
+
+- Insérer une figure
+
+- Sous la figure, ajouter attribut `#fig-label`
+
+- Insérer "Cross-reference"
+
+Démo "div"
+
+- Créer un div avec:
+
+  - bloc de code
+
+  - caption
+
+- Ajouter référence interne
+
+## Fonctionnalité quarto - [blocs de code](https://quarto.org/docs/computations/execution-options.html#figure-options) {.smaller .scrollable}
+
+Démo bloc:
+
+- Insérer bloc de code
+
+- Créer un tableau
+
+- Ajouter `#| label: tbl-cars`
+
+- Insérer référence interne.
+
+Démo text en ligne:
+
+- Extraire une valeur du tableau
+
+- Insérer dans le texte
+
+Démo [figure supplémentaire](https://quarto.org/docs/authoring/cross-references-custom.html#example-supplemental-figures):
+
+- Modifier YAML
+
+- Insérer div
+
+## Fonctionnalité quarto - formatage Word {.smaller .scrollable}
+
+Démo
+
+- Rendu en format Word
+
+- Modifier style
+
+- Sauvegarder sous nouveau nom (ex: styles.docx)
+
+- Ajouter dans YAML
+
+```         
+format:
+  docx: 
+    reference-doc: styles.docx
+```
+
+## Fonctionnalité quarto - éléments interactifs {.smaller .scrollable}
+
+Démo tabsets (insérer tabset)
+
+Démo carte interactive
+
+```{r}
+#| echo: true
+library(leaflet)
+
+leaflet() %>%
+  addTiles() %>%  # Adds default OpenStreetMap tiles
+  addMarkers(lng = -3.1883, lat = 55.9533, popup = "Edinburgh, Scotland")   
+```
+
+## Code pour modifier le document lui-même {.scrollable}
+
+![](https://m.media-amazon.com/images/M/MV5BMTk1NDgyMDk1NV5BMl5BanBnXkFtZTcwNjE3OTEwOQ@@._V1_QL75_UX500_CR0,47,500,281_.jpg)
+
+- [Filtres et extensions](https://quarto.org/docs/extensions/listing-filters.html)
+- Knitr hooks `knitr::hooks` Exemple:
+
+```         
+# Automatic formatting
+
+local({
+  hook_old <- knitr::knit_hooks$get("document")  
+  knitr::knit_hooks$set(document = function(x) {
+    x = gsub("CO2",  "CO~2~",     x, fixed=T)
+    x = gsub("HCO3", "HCO~3~^-^", x, fixed=T)
+    x = gsub(" um", " μm", x, fixed=T)
+    x = gsub("umol", "μmol", x, fixed=T)
+    x = gsub("chlorophyll a", "chlorophyll *a*", x, fixed=T)
+    hook_old(x)
+  })
+})
+```
+
+## Collaboration {.smaller}
+
+![](https://git-scm.com/images/logo@2x.png){width="145"}
+
+Format texte = parfait pour git
+
+RStudio Cloud (payant pour mode collaboratif)
+
+Partager rendu (ex. .docx) et intégrer changements manuellement
+
+Quarto 2 s'en vient
+
+## Méchanisme de Git
+
+```{mermaid}
+%%{init: {"themeVariables": {"fontSize": "40px"}}}%%
+
+flowchart LR
+
+    GH["☁️ GitHub<br>Dépôt distant"]
+
+    subgraph PC["💻 Ordi. local"]
+        WD["Fichiers de travail"]
+        ST["Zone d'indexation<br>(git add)"]
+        REPO["Dépôt Git local"]
+
+        WD -->|"git add"| ST
+        ST -->|"git commit"| REPO
+    end
+
+    GH -->|"git clone"| REPO
+    REPO -->|"git push"| GH
+    GH -->|"git pull"| REPO
+    
+style PC fill:#f8f9fa,stroke:#666,stroke-width:2px
+```
+
+Chaque `commit`devient un point de sauvegarde.
 
 ## À vous d'essayer 🔨
 
-Titre et sous-titre
+:::::: columns
+:::: {.column width="50%"}
+::: columns
+Document quarto avec:
 
-Hyperlien
+- Titre et sous-titre
 
-Citation
+- Hyperlien
 
-Figure et légende (avec code caché)
+- Citation
 
-Tableau statistique
+- Figure et légende (avec code caché)
 
-Valeur calculée mélangée avec prose
+- Tableau statistique
 
-Rendu du document
+- Valeur calculée mélangée avec prose
 
+- Rendu du document
+:::
+::::
+
+::: {.column width="50%"}
+Essayez le flux collaboratif:
+
+- Créer un compte GitHub,
+
+- créez un dépôt (repository),
+
+- clonez-là sur votre ordinateur,
+
+- ajoutez-y votre fichier quarto (stage and commit),
+
+- envoyez la mise à jour vers GitHub (push).
+:::
+::::::
 
 ## Références
