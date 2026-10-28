@@ -265,7 +265,7 @@ Démo:
 
 Banque de styles de citations - <https://github.com/citation-style-language/styles>
 
-Démo avec DOI: [@gentleman2007]
+Démo avec DOI: @gentleman2007
 
 - Taper "/" et sélectionner "Citation..."
 

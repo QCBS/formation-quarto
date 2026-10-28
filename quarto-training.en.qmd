@@ -1,0 +1,484 @@
+---
+format:
+  revealjs:
+    code-block-height: 1024px
+    embed-resources: true
+bibliography: references.bib
+---
+
+# Introduction to Quarto
+
+<p class="subtitle lead">
+
+For academic writing
+
+</p>
+
+![](https://quarto.org/assets/images/quarto.png){width="200"}
+
+Featuring: Egor Katkov, research professional at CSBQ
+
+![](https://qcbs.ca/wp-content/uploads/2025/07/csbq-logo-black.png){width="400" height="80"}
+
+## Objectives - Understanding
+
+Why use Quarto
+
+How Quarto works
+
+Collaboration options
+
+## Objectives - Do
+
+Title and subtitle
+
+Hyperlink
+
+Citation
+
+Figure and caption
+
+Statistical table
+
+Value calculated with prose
+
+Hide code
+
+## Reproducibility Crisis
+
+![](fig/repr_crisis.png)
+
+## Possible Causes {.smaller}
+
+Chance
+
+Scientific fraud
+
+Data collection errors
+
+P-hacking
+
+Selective reporting
+
+Statistical or analytical errors
+
+Opaque methodology
+
+## Traditional Workflow
+
+```{mermaid}
+%%{init: {'themeVariables': {'fontSize': '28px'}}}%%
+
+flowchart LR
+
+A1[Code] --> F1[Figure] 
+A1 --> F2["Statistical<br />result"] 
+F1 --> |"Insert"| W1["Word Document"] 
+F2 --> |"Copy and paste"| W1 
+W1 --> P3["Publication"]
+```
+
+::: notes
+What happens when the user starts from the published document and wants to go back to the analysis?
+:::
+
+## Reproducible Workflow
+
+```{mermaid}
+%%{init: {'themeVariables': {'fontSize': '28px'}}}%%
+
+flowchart LR
+
+C[Code] --> F[Figure]
+C --> R[Résultat<br />statistique]
+
+
+F <-->|"intégré"| Q[Document Quarto]
+C <-->|"intégré"| Q
+R <-->|"intégré"| Q
+
+Q --> PDF[PDF]
+Q --> WORD[Word]
+Q --> HTML[HTML]
+Q --> S[Diapositives]
+```
+
+Conceptualized by @gentleman2007
+
+::: notes
+Reader:
+
+- can trace how each figure was generated and
+
+- experiment with changes to the analysis in the final product.
+
+Benefits for the author:
+
+- easy to modify or correct the code without having to re-edit everything in the final document;
+
+- reduces the risk of copy-and-paste errors;
+
+- allows for more thorough revision
+:::
+
+## Word vs. Quarto
+
+:::: columns
+::: {.column width="50%"}
+### Word
+
+\+ as-is
+
+\+ easy to use and accept revisions
+
+\- no data traceability
+
+\- manual work by default
+
+\- difficult to handle large documents
+
+\- compatibility issues
+
+\- controlled by a single company
+
+\
+:::
+
+::: {.column width="50%"}
+### Quarto
+
+—two files: source +
+
+output—learning curve for collaboration
+
+\+ option: code vs. manual work
+
+\+ simple yet powerful
+
+\+ very lightweight source file
+
+\+ free software
+:::
+::::
+
+
+## Under the hood of Quarto
+
+```{mermaid}
+%%{init: {'themeVariables': {'fontSize': '24px'}}}%%
+
+flowchart LR
+
+M["Prose in<br />Markdown<br />format"]
+C[Code]
+
+M --> Q["Quarto<br />doc."]
+C --> Q
+
+Q --> K["knitr / Jupyter<br />(code execution)"]
+
+K --> P[Pandoc]
+
+P --> PDF[PDF]
+P --> HTML[HTML]
+P --> DOCX[Word]
+P --> SL[Slides]
+```
+
+## Markdown - the basics
+
+::::::: columns
+::: {.column width="40%"}
+
+Markdown source
+
+```         
+# Title or Heading 1
+
+## Heading 2  
+
+Text can contain **bold** and *italics*. It can also contain `monospace formatted text`, ideal for sharing code.
+
+- Item 1^with superscript^ 
+- Item 2~with subscript~
+
+[Hyperlink text](https://example.com) 
+```
+:::
+
+::::: {.column width="60%"}
+
+Renders as:
+
+```{=html}
+<style>
+.fake-h1 { font-size: 1.6em; font-weight: 700; margin: 0.3em 0; }
+.fake-h2 { font-size: 1.2em; font-weight: 600; margin: 0.3em 0; }
+</style>
+```
+
+::: fake-h1
+Title or Heading 1
+:::
+
+::: fake-h2
+Heading 2
+:::
+
+Text can contain **bold** and *italics*. It can also contain `monospace formatted text`, ideal for sharing code.
+
+- Item 1^with superscript^ 
+- Item 2~with subscript~
+
+[Hyperlink text](https://example.com) 
+:::::
+:::::::
+
+
+## Markdown - Including Images
+
+```         
+![Figure caption](https://imgs.xkcd.com/comics/self_description.png)
+```
+
+Renders as:
+
+![Figure caption](https://imgs.xkcd.com/comics/self_description.png)
+
+## Markdown - Include tables
+
+```         
+| Tables   |     Are      |   Cool |
+|----------|:------------:|-------:|
+| col 1 is | on the left  |  $1600 |
+| col 2 is |   centered   |    $12 |
+| col 3 is | on the right |     $1 |
+```
+Renders as:
+
+| Tables   |     Are      |   Cool |
+|----------|:------------:|-------:|
+| col 1 is | on the left  | \$1600 |
+| col 2 is |   centered   |   \$12 |
+| col 3 is | on the right |    \$1 |
+
+## Markdown - Equations using Latex math
+
+Display style:
+
+```
+$$
+N_t = N_0 e^{a*t}
+$$
+```
+
+Renders as:
+
+$$
+N_t = N_0 e^{a*t}
+$$
+
+Or inline: `$N_0=1$` renders as $N_0=1$
+
+## Visual Editor
+
+Demo:
+
+- Create a Quarto document
+
+- Visual Editor
+
+- Source Mode
+
+## Quarto Feature -[Citations](https://quarto.org/docs/authoring/citations.html){.smaller .scrollable}
+
+[Citation Style Library](https://github.com/citation-style-language/styles)
+
+From DOI demo: @gentleman2007
+
+- Type "/" and select "Citation..."
+
+- "From DOI" -\> Search for DOI -\> "Insert"
+
+
+Zotero integration
+
+## Quarto feature—[internal references](https://quarto.org/docs/authoring/cross-references.html){.smaller}
+
+Basic demo
+
+- Insert a figure
+
+- Below the figure, add the`#fig-label`attribute
+
+- Insert "Cross-reference"
+
+"div" demo
+
+- Create a div with:
+
+  - code block
+
+  - caption
+
+- Add internal reference
+
+## Quarto feature -[code blocks](https://quarto.org/docs/computations/execution-options.html#figure-options){.smaller .scrollable}
+
+Code block demo:
+
+- Insert code block
+
+- Create a table
+
+- Add`#| label: tbl-cars`
+
+- Insert internal reference.
+
+Inline text demo:
+
+- Extract a value from the table
+
+- Insert into the text
+
+[Additional figure](https://quarto.org/docs/authoring/cross-references-custom.html#example-supplemental-figures)demo:
+
+- Edit YAML
+
+- Insert a div
+
+## Quarto Feature - Word Formatting {.smaller .scrollable}
+
+Demo:
+
+- Rendered in Word format
+
+- Edit style
+
+- Save as a new file (e.g., styles.docx)
+
+- Add to YAML
+
+```         
+format:
+  docx: 
+    reference-doc: styles.docx
+```
+
+## Quarto Feature - Interactive Elements {.smaller .scrollable}
+
+Demo: Tabsets (insert tabset)
+
+Interactive map demo
+
+```{r}
+#| echo: true
+library(leaflet)
+
+leaflet() %>%
+  addTiles() %>%  # Adds default OpenStreetMap tiles
+  addMarkers(lng = -3.1883, lat = 55.9533, popup = "Edinburgh, Scotland")   
+```
+
+## Code to edit the document itself {.scrollable}
+
+![](https://m.media-amazon.com/images/M/MV5BMTk1NDgyMDk1NV5BMl5BanBnXkFtZTcwNjE3OTEwOQ@@._V1_QL75_UX500_CR0,47,500,281_.jpg){width="382"}
+
+- Knitr
+- [Filters and Extensions](https://quarto.org/docs/extensions/listing-filters.html)
+- `knitr::hooks` Example:
+
+```         
+# Automatic formatting
+
+local({
+  hook_old <- knitr::knit_hooks$get("document")  
+  knitr::knit_hooks$set(document = function(x) {
+    x = gsub("CO2",  "CO~2~",     x, fixed=T)
+    x = gsub("HCO3", "HCO~3~^-^", x, fixed=T)
+    x = gsub(" um", " μm", x, fixed=T)
+    x = gsub("umol", "μmol", x, fixed=T)
+    x = gsub("chlorophyll a", "chlorophyll *a*", x, fixed=T)
+    hook_old(x)
+  })
+})
+```
+
+## Collaboration {.smaller}
+
+![](https://git-scm.com/images/logo@2x.png){width="100"}
+
+Text format = perfect for Git
+
+RStudio Cloud (paid for collaborative mode)
+
+Share output (e.g., .docx) and merge changes manually
+
+Quarto 2 is coming
+
+Mixed (ex: results in quarto, rest in word)
+
+## Git Mechanism
+
+```{mermaid}
+%%{init: {"themeVariables": {"fontSize": "30px"}}}%%
+
+flowchart LR
+
+    GH["☁️ GitHub<br>Remote repo"]
+
+    subgraph PC["Local computer"]
+        WD["Working directory"]
+        ST["Staging area<br>(git add)"]
+        REPO["Local repo"]
+
+        WD -->|"git add"| ST
+        ST -->|"git commit"| REPO
+    end
+
+    GH -->|"git clone"| REPO
+    REPO -->|"git push"| GH
+    GH -->|"git pull"| REPO
+    
+style PC fill:#f8f9fa,stroke:#666,stroke-width:2px
+```
+
+Each `commit` becomes a savepoint.
+
+## Give it a try
+
+::: columns
+:::: {.column width="50%"}
+
+Create Quarto document with:
+
+- Title and subtitle
+
+- Hyperlink
+
+- Citation
+
+- Figure and caption (with hidden code)
+
+- Statistical table
+
+- Calculated value mixed with prose
+
+Render document
+
+:::: {.column width="50%"}
+Try the collaborative workflow with git:
+
+- Create a GitHub account,
+
+- create a repository,
+
+- clone it to your computer,
+
+- add your Quarto file to it (stage and commit),
+
+- push the update to GitHub
+
+:::
+
+## References
