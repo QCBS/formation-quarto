@@ -368,7 +368,7 @@ leaflet() %>%
 
 ## Code pour modifier le document lui-même {.scrollable}
 
-![](https://m.media-amazon.com/images/M/MV5BMTk1NDgyMDk1NV5BMl5BanBnXkFtZTcwNjE3OTEwOQ@@._V1_QL75_UX500_CR0,47,500,281_.jpg)
+![](https://m.media-amazon.com/images/M/MV5BMTk1NDgyMDk1NV5BMl5BanBnXkFtZTcwNjE3OTEwOQ@@._V1_QL75_UX500_CR0,47,500,281_.jpg){width="382"}
 
 - [Filtres et extensions](https://quarto.org/docs/extensions/listing-filters.html)
 - Knitr hooks `knitr::hooks` Exemple:
@@ -404,7 +404,7 @@ Quarto 2 s'en vient
 ## Méchanisme de Git
 
 ```{mermaid}
-%%{init: {"themeVariables": {"fontSize": "40px"}}}%%
+%%{init: {"themeVariables": {"fontSize": "30px"}}}%%
 
 flowchart LR
 
