@@ -16,7 +16,7 @@ For academic writing
 
 ![](https://quarto.org/assets/images/quarto.png){width="200"}
 
-Featuring: Egor Katkov, research professional at CSBQ
+Instructor: Egor Katkov, research professional at CSBQ
 
 ![](https://qcbs.ca/wp-content/uploads/2025/07/csbq-logo-black.png){width="400" height="80"}
 
@@ -46,7 +46,7 @@ Hide code
 
 ## Reproducibility Crisis
 
-![](fig/repr_crisis.png)
+![](fig/repr_crisis_en.png)
 
 ## Possible Causes {.smaller}
 
@@ -82,7 +82,7 @@ W1 --> P3["Publication"]
 What happens when the user starts from the published document and wants to go back to the analysis?
 :::
 
-## Reproducible Workflow
+## Computationally Reproducible Workflow
 
 ```{mermaid}
 %%{init: {'themeVariables': {'fontSize': '28px'}}}%%
@@ -121,13 +121,13 @@ Benefits for the author:
 - allows for more thorough revision
 :::
 
-## Word vs. Quarto
+## Word vs. Quarto {.smaller}
 
-:::: columns
+::::: columns
 ::: {.column width="50%"}
 ### Word
 
-\+ as-is
+\+ what you see i what you get
 
 \+ easy to use and accept revisions
 
@@ -147,9 +147,9 @@ Benefits for the author:
 ::: {.column width="50%"}
 ### Quarto
 
-—two files: source +
+two files: source + output
 
-output—learning curve for collaboration
+\- learning curve for collaboration
 
 \+ option: code vs. manual work
 
@@ -159,8 +159,7 @@ output—learning curve for collaboration
 
 \+ free software
 :::
-::::
-
+:::::
 
 ## Under the hood of Quarto
 
@@ -189,7 +188,6 @@ P --> SL[Slides]
 
 ::::::: columns
 ::: {.column width="40%"}
-
 Markdown source
 
 ```         
@@ -207,7 +205,6 @@ Text can contain **bold** and *italics*. It can also contain `monospace formatte
 :::
 
 ::::: {.column width="60%"}
-
 Renders as:
 
 ```{=html}
@@ -227,13 +224,12 @@ Heading 2
 
 Text can contain **bold** and *italics*. It can also contain `monospace formatted text`, ideal for sharing code.
 
-- Item 1^with superscript^ 
-- Item 2~with subscript~
+- Item 1\^with superscript\^
+- Item 2\~with subscript\~
 
-[Hyperlink text](https://example.com) 
+[Hyperlink text](https://example.com)
 :::::
 :::::::
-
 
 ## Markdown - Including Images
 
@@ -254,6 +250,7 @@ Renders as:
 | col 2 is |   centered   |    $12 |
 | col 3 is | on the right |     $1 |
 ```
+
 Renders as:
 
 | Tables   |     Are      |   Cool |
@@ -266,7 +263,7 @@ Renders as:
 
 Display style:
 
-```
+```         
 $$
 N_t = N_0 e^{a*t}
 $$
@@ -300,7 +297,6 @@ From DOI demo: @gentleman2007
 
 - "From DOI" -\> Search for DOI -\> "Insert"
 
-
 Zotero integration
 
 ## Quarto feature—[internal references](https://quarto.org/docs/authoring/cross-references.html){.smaller}
@@ -309,7 +305,7 @@ Basic demo
 
 - Insert a figure
 
-- Below the figure, add the`#fig-label`attribute
+- Below the figure, add the `#fig-label` attribute
 
 - Insert "Cross-reference"
 
@@ -323,7 +319,7 @@ Basic demo
 
 - Add internal reference
 
-## Quarto feature -[code blocks](https://quarto.org/docs/computations/execution-options.html#figure-options){.smaller .scrollable}
+## Quarto feature -[code blocks](https://quarto.org/docs/computations/execution-options.html#figure-options){.smaller .scrollable} {.smaller}
 
 Code block demo:
 
@@ -447,9 +443,8 @@ Each `commit` becomes a savepoint.
 
 ## Give it a try
 
-::: columns
+::::: columns
 :::: {.column width="50%"}
-
 Create Quarto document with:
 
 - Title and subtitle
@@ -466,7 +461,7 @@ Create Quarto document with:
 
 Render document
 
-:::: {.column width="50%"}
+::: {.column width="50%"}
 Try the collaborative workflow with git:
 
 - Create a GitHub account,
@@ -478,7 +473,8 @@ Try the collaborative workflow with git:
 - add your Quarto file to it (stage and commit),
 
 - push the update to GitHub
-
 :::
+::::
 
 ## References
+:::::
